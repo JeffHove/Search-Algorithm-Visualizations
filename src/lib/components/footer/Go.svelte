@@ -57,7 +57,13 @@
   const onclick = () => {
     if (target.v === "" || isNaN(Number(target.v))) steps.v[0].resultContent = "Input valid target number";
     else {
-      steps.v[0].resultContent = "";
+      // Bug (breaking): this doesn't make sense.
+      steps.v[0].resultContent = "asd";
+      console.log(steps.v[0].resultContent); // asd
+      console.log(steps.v[0]);
+      // Proxy { <target>: {…}, <handler>: {…} }
+      //   <target>: Object { metaTileContents: [], resultContent: "", tileContents: [], … }
+      //   <handler>: Object { defineProperty: defineProperty(_, prop, descriptor), deleteProperty: deleteProperty(target, prop), get: get(target, prop, receiver), … }
       let returnedIndex = -1;
       const searchFunction: SearchAlgorithm = unsortedAlgos[algorithm.v] || sortedAlgos[algorithm.v];
       if (searchFunction) {
