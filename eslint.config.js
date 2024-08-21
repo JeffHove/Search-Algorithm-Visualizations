@@ -5,7 +5,7 @@ import ts from "typescript-eslint";
 import globals from "globals";
 import js from "@eslint/js";
 
-/** @type {import('eslint').Linter.FlatConfig[]} */
+/** @type {import('eslint').Linter.Config[]} */
 export default [
   // Formatting
   stylistic.configs["recommended-flat"],
