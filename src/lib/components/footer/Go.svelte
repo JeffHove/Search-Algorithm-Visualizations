@@ -4,7 +4,7 @@
   import { finalResult, hideTiles } from "$lib/main";
   import { mergeSort } from "$lib/utils";
 
-  const go = () => {
+  const onclick = () => {
     if (target.v === "" || isNaN(Number(target.v))) steps.v[0].resultContent = "Input valid target number";
     else {
       steps.v[0].resultContent = "";
@@ -24,4 +24,4 @@
   };
 </script>
 
-<button onclick={go}>Go</button>
+<button {onclick}>Go</button>
