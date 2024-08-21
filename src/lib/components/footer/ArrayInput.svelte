@@ -1,8 +1,11 @@
 <script lang="ts">
-  import { getRandomIntBetween, stringToNumberArray, sanitizeInput } from "$lib/utils";
+  import { sanitizeInput } from "$lib/shared";
   import { steps } from "$lib/refs.svelte";
 
   let arrayInput = $state("");
+
+  const getRandomIntBetween = (min: number, max: number): number => Math.floor(Math.random() * (max - min)) + min;
+  const stringToNumberArray = (input: string): number[] => input.split(",").map(str => parseFloat(str.trim())).filter(num => !isNaN(num));
 
   const createStep0TileColors = () => {
     steps.v[0].tileColors = [];
