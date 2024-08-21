@@ -3,7 +3,7 @@ import { changeEmptyTileContent, changeTileContent, newEmptyTile, colorTiles, re
 export type SearchAlgorithm = (target: number, A: number[], leftIndex?: number, rightIndex?: number) => number;
 
 const linear: SearchAlgorithm = (target, A) => {
-  for (let i: number = 0; i < A.length; i++) {
+  for (let i = 0; i < A.length; i++) {
     colorTile(i, "green");
     if (target === A[i]) return i;
     colorTile(i, "white");
@@ -13,11 +13,11 @@ const linear: SearchAlgorithm = (target, A) => {
 };
 
 const sentinel: SearchAlgorithm = (target, A) => {
-  const last: number = A[A.length - 1];
+  const last = A[A.length - 1];
   A[A.length - 1] = target;
   changeTileContent(A.length - 1, target);
 
-  let i: number = 0;
+  let i = 0;
   if (A.length !== 1) revealTile(i);
   while (A[i] !== target) {
     colorTile(i, "white");
@@ -57,7 +57,7 @@ const binary: SearchAlgorithm = (target, A, leftIndex = 0, rightIndex = A.length
 };
 
 const exponential: SearchAlgorithm = (target, A) => {
-  let i: number = 1;
+  let i = 1;
   if (i < A.length) revealTile(i);
   while (i < A.length && A[i] <= target) {
     colorTiles(0, i - 1, "white");
@@ -71,9 +71,9 @@ const exponential: SearchAlgorithm = (target, A) => {
 };
 
 const fibonacci: SearchAlgorithm = (target, A) => {
-  let fibA: number = 0;
-  let fibB: number = 1;
-  let fibC: number = fibA + fibB;
+  let fibA = 0;
+  let fibB = 1;
+  let fibC = fibA + fibB;
 
   while (fibC < A.length) {
     fibA = fibB;
@@ -81,10 +81,10 @@ const fibonacci: SearchAlgorithm = (target, A) => {
     fibC = fibA + fibB;
   }
 
-  let eliminatedFrontIndex: number = -1;
+  let eliminatedFrontIndex = -1;
 
   while (fibC > 1) {
-    const pivot: number = Math.min(eliminatedFrontIndex + fibA, A.length - 1);
+    const pivot = Math.min(eliminatedFrontIndex + fibA, A.length - 1);
     colorTile(pivot, "green");
 
     if (target < A[pivot]) {
@@ -145,9 +145,9 @@ const interpolation: SearchAlgorithm = (target, A, leftIndex = 0, rightIndex = A
 };
 
 const jump: SearchAlgorithm = (target, A) => {
-  let j: number = Math.floor(Math.sqrt(A.length));
+  let j = Math.floor(Math.sqrt(A.length));
 
-  let i: number = 0;
+  let i = 0;
   revealTile(Math.min(j, A.length) - 1);
   while (A[Math.min(j, A.length) - 1] < target) {
     colorTiles(0, Math.min(j, A.length) - 1, "white");
@@ -176,17 +176,17 @@ const jump: SearchAlgorithm = (target, A) => {
 };
 
 const meta: SearchAlgorithm = (target, A) => {
-  const numBitsNeededForMaxIndex: number = Math.ceil(Math.log2(A.length));
+  const numBitsNeededForMaxIndex = Math.ceil(Math.log2(A.length));
 
-  for (let i: number = 0; i < numBitsNeededForMaxIndex; i++) newEmptyTile();
+  for (let i = 0; i < numBitsNeededForMaxIndex; i++) newEmptyTile();
 
-  let cutoff: number = 0;
-  for (let i: number = numBitsNeededForMaxIndex - 1; i >= 0; i--) {
+  let cutoff = 0;
+  for (let i = numBitsNeededForMaxIndex - 1; i >= 0; i--) {
     colorTile(cutoff, "green");
     if (A[cutoff] === target) return cutoff;
     colorTiles(0, cutoff, "white");
 
-    const cutoffCandidate: number = cutoff | (1 << i);
+    const cutoffCandidate = cutoff | (1 << i);
 
     if (cutoffCandidate < A.length) revealTile(cutoffCandidate);
 

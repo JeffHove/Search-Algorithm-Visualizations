@@ -15,7 +15,7 @@ type Ref<T> = {
 const deepCopy = (obj: object): object => JSON.parse(JSON.stringify(obj)) as object;
 
 const ref = <T>(initial: T): Ref<T> => {
-  const isObj: boolean = typeof initial === "object" ? true : false;
+  const isObj = typeof initial === "object" ? true : false;
   let v: T = $state(isObj ? (deepCopy(initial!) as T) : initial);
   const reset = (): T => (v = isObj ? (deepCopy(initial!) as T) : initial);
 

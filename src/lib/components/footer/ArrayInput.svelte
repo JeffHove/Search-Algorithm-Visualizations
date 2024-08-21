@@ -2,32 +2,32 @@
   import { getRandomIntBetween, stringToNumberArray, sanitizeInput } from "$lib/utils";
   import { steps } from "$lib/refs.svelte";
 
-  let arrayInput: string = $state("");
+  let arrayInput = $state("");
 
-  const createStep0TileColors = (): void => {
+  const createStep0TileColors = () => {
     steps.v[0].tileColors = [];
-    for (let i: number = 0; i < steps.v[0].tileContents.length; i++) steps.v[0].tileColors[i] = "var(--secondary-color)";
+    for (let i = 0; i < steps.v[0].tileContents.length; i++) steps.v[0].tileColors[i] = "var(--secondary-color)";
   };
 
-  const pop = (): void => {
+  const pop = () => {
     if (arrayInput === "") steps.v[0].tileContents.pop();
     else {
-      const toRemove: number[] = stringToNumberArray(arrayInput);
-      for (let i: number = 0; i < toRemove.length; i++) {
-        const index: number = steps.v[0].tileContents.indexOf(toRemove[i]);
+      const toRemove = stringToNumberArray(arrayInput);
+      for (let i = 0; i < toRemove.length; i++) {
+        const index = steps.v[0].tileContents.indexOf(toRemove[i]);
         if (index !== -1) steps.v[0].tileContents.splice(index, 1);
       }
     }
     createStep0TileColors();
   };
 
-  const push = (): void => {
+  const push = () => {
     if (arrayInput === "") steps.v[0].tileContents.push(getRandomIntBetween(-9, 99));
     else steps.v[0].tileContents.push(...stringToNumberArray(arrayInput));
     createStep0TileColors();
   };
 
-  const handleKeydown = (e: KeyboardEvent): void => {
+  const handleKeydown = (e: KeyboardEvent) => {
     if (e.key === "Enter") {
       if (e.shiftKey) pop();
       else push();
@@ -44,8 +44,8 @@
   <button style:visibility="hidden"></button>
 {/if}
 <input
-  oninput={(): void => { arrayInput = sanitizeInput(arrayInput, "0-9, -"); }}
-  aria-label="Array input: number comma number comma etc."
+  oninput={() => { arrayInput = sanitizeInput(arrayInput, "0-9, -"); }}
+  aria-label="Array input comma number comma etc."
   onkeydown={handleKeydown}
   placeholder="#, #, ..."
   bind:value={arrayInput}

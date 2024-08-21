@@ -11,7 +11,7 @@
 </div>
 {#if stepsIndexer.v !== 1}
   <button
-    onclick={(): void => { stepsIndexer.v--; }}
+    onclick={() => { stepsIndexer.v--; }}
     class="fa-solid fa-arrow-left"
     aria-label="Left arrow"
   ></button>
@@ -20,14 +20,14 @@
 {/if}
 {#if stepsIndexer.v !== steps.v.length - 1}
   <button
-    onclick={(): void => { stepsIndexer.v++; }}
+    onclick={() => { stepsIndexer.v++; }}
     class="fa-solid fa-arrow-right"
     aria-label="Right arrow"
   ></button>
 {:else}
   <button style:visibility="hidden"></button>
 {/if}
-<button onclick={(): void => { stepsIndexer.reset(); steps.v.splice(1); }} class="fa-solid fa-rotate-right" aria-label="Reset footer"></button>
+<button onclick={() => { stepsIndexer.reset(); steps.v.splice(1); }} class="fa-solid fa-rotate-right" aria-label="Reset footer"></button>
 
 <style>
   div {

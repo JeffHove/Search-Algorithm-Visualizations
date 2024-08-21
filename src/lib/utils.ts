@@ -3,7 +3,7 @@ export const getRandomIntBetween = (min: number, max: number): number => Math.fl
 export const stringToNumberArray = (input: string): number[] =>
   input.split(",").map(str => parseFloat(str.trim())).filter(num => !isNaN(num));
 
-const merge = (left: number[], right: number[]): number[] => {
+const merge = (left: number[], right: number[]) => {
   const sortedArray: number[] = [];
   let leftIndex = 0;
   let rightIndex = 0;
@@ -33,9 +33,7 @@ const merge = (left: number[], right: number[]): number[] => {
 };
 
 export const mergeSort = (array: number[]): number[] => {
-  if (array.length <= 1) {
-    return array;
-  }
+  if (array.length <= 1) return array;
 
   const middle = Math.floor(array.length / 2);
   const leftArray = array.slice(0, middle);
@@ -44,7 +42,7 @@ export const mergeSort = (array: number[]): number[] => {
   return merge(mergeSort(leftArray), mergeSort(rightArray));
 };
 
-export const sanitizeInput = (s: string, allowedChars: string): string => {
+export const sanitizeInput = (s: string, allowedChars: string) => {
   const regex = new RegExp(`[^${allowedChars}]`, "g");
   return s.replace(regex, "");
 };

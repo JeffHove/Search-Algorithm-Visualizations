@@ -4,7 +4,7 @@
 </script>
 
 <input
-  oninput={(): void => { target.v = sanitizeInput(target.v, "0-9-"); }}
+  oninput={() => { target.v = sanitizeInput(target.v, "0-9-"); }}
   aria-label="Algorithm target number"
   placeholder="&#xf140"
   bind:value={target.v}

@@ -4,11 +4,11 @@
   import { finalResult, hideTiles } from "$lib/main";
   import { mergeSort } from "$lib/utils";
 
-  const go = (): void => {
+  const go = () => {
     if (target.v === "" || isNaN(Number(target.v))) steps.v[0].resultContent = "Input valid target number";
     else {
       steps.v[0].resultContent = "";
-      let returnedIndex: number = -1;
+      let returnedIndex = -1;
       const searchFunction: SearchAlgorithm = unsortedAlgos[algorithm.v] || sortedAlgos[algorithm.v];
       if (searchFunction) {
         if (sortedAlgos[algorithm.v]) {

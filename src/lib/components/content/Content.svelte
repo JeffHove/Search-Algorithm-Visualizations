@@ -1,6 +1,5 @@
 <script lang="ts">
   import { stepsIndexer, steps } from "$lib/refs.svelte";
-
   import EmptyTile from "./EmptyTile.svelte";
   import Tile from "./Tile.svelte";
 </script>
