@@ -1,4 +1,4 @@
-import { changeEmptyTileContent, changeTileContent, newEmptyTile, colorTiles, revealTile, colorTile } from "./main";
+import { changeEmptyTileContent, changeTileContent, newEmptyTile, colorTiles, revealTile, colorTile } from "$lib/main";
 
 export type SearchAlgorithm = (target: number, A: number[], leftIndex?: number, rightIndex?: number) => number;
 

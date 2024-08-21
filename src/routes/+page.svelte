@@ -2,7 +2,7 @@
   import Content from "$lib/components/content/Content.svelte";
   import Footer from "$lib/components/footer/Footer.svelte";
   import Header from "$lib/components/Header.svelte";
-  import "../global.css";
+  import "$lib/../global.css";
 </script>
 
 <svelte:head>

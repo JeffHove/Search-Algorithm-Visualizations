@@ -1,4 +1,4 @@
-import { stepsIndexer, steps } from "./refs.svelte";
+import { stepsIndexer, steps } from "$lib/refs.svelte";
 
 const addStep = () => {
   stepsIndexer.v++;

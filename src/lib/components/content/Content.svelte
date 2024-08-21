@@ -1,7 +1,7 @@
 <script lang="ts">
+  import EmptyTile from "$lib/components/content/EmptyTile.svelte";
+  import Tile from "$lib/components/content/Tile.svelte";
   import { stepsIndexer, steps } from "$lib/refs.svelte";
-  import EmptyTile from "./EmptyTile.svelte";
-  import Tile from "./Tile.svelte";
 </script>
 
 <main>
