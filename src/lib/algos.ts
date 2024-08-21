@@ -1,4 +1,4 @@
-import { changeTileContent, addStep } from "$lib/shared";
+import { changeTileContent, addStep } from "$lib/shared.svelte";
 import { stepsIndexer, steps } from "$lib/refs.svelte";
 
 export type SearchAlgorithm = (target: number, A: number[], leftIndex?: number, rightIndex?: number) => number;

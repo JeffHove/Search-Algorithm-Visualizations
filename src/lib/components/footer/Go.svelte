@@ -1,7 +1,7 @@
 <script lang="ts">
   import { type SearchAlgorithm, unsortedAlgos, sortedAlgos } from "$lib/algos";
   import { stepsIndexer, algorithm, target, steps } from "$lib/refs.svelte";
-  import { changeTileContent, addStep } from "$lib/shared";
+  import { changeTileContent, addStep } from "$lib/shared.svelte";
 
   const hideTiles = () => {
     addStep();

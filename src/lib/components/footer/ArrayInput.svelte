@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { sanitizeInput } from "$lib/shared";
+  import { sanitizeInput } from "$lib/shared.svelte";
   import { steps } from "$lib/refs.svelte";
 
   let arrayInput = $state("");

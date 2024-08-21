@@ -2,12 +2,7 @@ import { stepsIndexer, steps } from "$lib/refs.svelte";
 
 export const addStep = () => {
   stepsIndexer.v++;
-  steps.v[stepsIndexer.v] = {
-    metaTileContents: [...steps.v[stepsIndexer.v - 1].metaTileContents],
-    tileContents: [...steps.v[stepsIndexer.v - 1].tileContents],
-    resultContent: steps.v[stepsIndexer.v - 1].resultContent,
-    tileColors: [...steps.v[stepsIndexer.v - 1].tileColors],
-  };
+  steps.v[stepsIndexer.v] = $state.snapshot(steps.v[stepsIndexer.v - 1]);
 };
 
 export const sanitizeInput = (s: string, allowedChars: string) => {

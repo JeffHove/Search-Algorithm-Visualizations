@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { sanitizeInput } from "$lib/shared";
+  import { sanitizeInput } from "$lib/shared.svelte";
   import { target } from "$lib/refs.svelte";
 </script>
 
