@@ -5,12 +5,12 @@
   --lr-margin: 0px 1px;
   --primary-color: rgb(18, 18, 18);
   --secondary-color: rgb(60, 60, 60);
+  --hover-color: white;
   --tile-height: 1.2rem;
   --transition: background-color 0.15s ease-out, color 0.15s ease-out;
 }
 
 html {
-  // prettier-ignore
   font: bold 36px Arial, Helvetica, sans-serif;
   height: 100%;
 

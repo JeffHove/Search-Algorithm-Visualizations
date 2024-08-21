@@ -6,7 +6,7 @@
   {tileContent}
 </div>
 
-<style lang="scss">
+<style>
   div {
     border: 2px white solid;
   }

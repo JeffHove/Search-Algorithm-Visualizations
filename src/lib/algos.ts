@@ -1,4 +1,4 @@
-import { colorTile, colorTiles, changeTileContent, revealTile, newEmptyTile, changeEmptyTileContent } from "./main";
+import { changeEmptyTileContent, changeTileContent, newEmptyTile, colorTiles, revealTile, colorTile } from "./main";
 
 export type SearchAlgorithm = (target: number, A: number[], leftIndex?: number, rightIndex?: number) => number;
 
@@ -43,9 +43,11 @@ const binary: SearchAlgorithm = (target, A, leftIndex = 0, rightIndex = A.length
     if (target < A[pivot]) {
       colorTiles(pivot, A.length - 1, "white");
       rightIndex = pivot - 1;
-    } else if (target === A[pivot]) {
+    }
+    else if (target === A[pivot]) {
       return pivot;
-    } else {
+    }
+    else {
       colorTiles(0, pivot, "white");
       leftIndex = pivot + 1;
     }
@@ -90,9 +92,11 @@ const fibonacci: SearchAlgorithm = (target, A) => {
       fibC = fibA;
       fibB = fibB - fibA;
       fibA = fibC - fibB;
-    } else if (A[pivot] === target) {
+    }
+    else if (A[pivot] === target) {
       return pivot;
-    } else {
+    }
+    else {
       colorTiles(0, pivot, "white");
       fibC = fibB;
       fibB = fibA;
@@ -128,7 +132,8 @@ const interpolation: SearchAlgorithm = (target, A, leftIndex = 0, rightIndex = A
       colorTiles(0, pivot, "white");
       leftIndex = pivot + 1;
       revealTile(leftIndex);
-    } else {
+    }
+    else {
       colorTiles(pivot, A.length - 1, "white");
       rightIndex = pivot - 1;
       revealTile(rightIndex);
@@ -214,10 +219,12 @@ const ternary: SearchAlgorithm = (target, A, leftIndex = 0, rightIndex = A.lengt
     if (target < A[pivot1]) {
       rightIndex = pivot1 - 1;
       colorTiles(pivot1, A.length - 1, "white");
-    } else if (target > A[pivot2]) {
+    }
+    else if (target > A[pivot2]) {
       leftIndex = pivot2 + 1;
       colorTiles(0, pivot2, "white");
-    } else {
+    }
+    else {
       leftIndex = pivot1 + 1;
       rightIndex = pivot2 - 1;
       colorTiles(0, pivot1, "white");
@@ -236,7 +243,8 @@ const ubiquitous: SearchAlgorithm = (target, A, leftIndex = 0, rightIndex = A.le
     if (A[pivot] <= target) {
       colorTiles(0, pivot - 1, "white");
       leftIndex = pivot;
-    } else {
+    }
+    else {
       colorTiles(pivot + 1, A.length - 1, "white");
       rightIndex = pivot;
     }
@@ -254,17 +262,17 @@ const ubiquitous: SearchAlgorithm = (target, A, leftIndex = 0, rightIndex = A.le
 };
 
 export const unsortedAlgos: { [key: string]: SearchAlgorithm } = {
-  Linear: linear,
   Sentinel: sentinel,
+  Linear: linear,
 };
 
 export const sortedAlgos: { [key: string]: SearchAlgorithm } = {
-  Binary: binary,
-  Exponential: exponential,
-  Fibonacci: fibonacci,
   Interpolation: interpolation,
+  Exponential: exponential,
+  Ubiquitous: ubiquitous,
+  Fibonacci: fibonacci,
+  Ternary: ternary,
+  Binary: binary,
   Jump: jump,
   Meta: meta,
-  Ternary: ternary,
-  Ubiquitous: ubiquitous,
 };

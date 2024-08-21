@@ -1,33 +1,32 @@
 type Step = {
-  tileColors: string[];
+  metaTileContents: (number | null)[];
   tileContents: (number | null)[];
 
   resultContent: string;
 
-  metaTileContents: (number | null)[];
+  tileColors: string[];
 };
 
 type Ref<T> = {
-  v: T;
   reset: () => void;
+  v: T;
 };
 
-const deepCopy = (obj: object): object => JSON.parse(JSON.stringify(obj));
+const deepCopy = (obj: object): object => JSON.parse(JSON.stringify(obj)) as object;
 
-function ref<T>(initial: T): Ref<T> {
+const ref = <T>(initial: T): Ref<T> => {
   const isObj: boolean = typeof initial === "object" ? true : false;
   let v: T = $state(isObj ? (deepCopy(initial!) as T) : initial);
   const reset = (): T => (v = isObj ? (deepCopy(initial!) as T) : initial);
 
-  // prettier-ignore
   return {
-    get v(): T { return v; },
     set v(value: T) { v = value; },
-    reset
+    get v(): T { return v; },
+    reset,
   };
-}
+};
 
 export const algorithm: Ref<string> = ref<string>("Linear");
 export const target: Ref<string> = ref<string>("");
 export const stepsIndexer: Ref<number> = ref<number>(0);
-export const steps: Ref<Step[]> = ref<Step[]>([{ tileColors: [], tileContents: [], resultContent: "", metaTileContents: [] }]);
+export const steps: Ref<Step[]> = ref<Step[]>([{ metaTileContents: [], resultContent: "", tileContents: [], tileColors: [] }]);

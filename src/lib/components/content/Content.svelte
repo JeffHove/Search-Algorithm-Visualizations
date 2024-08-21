@@ -1,12 +1,13 @@
 <script lang="ts">
   import { stepsIndexer, steps } from "$lib/refs.svelte";
+
   import EmptyTile from "./EmptyTile.svelte";
   import Tile from "./Tile.svelte";
 </script>
 
 <main>
   {#each steps.v[stepsIndexer.v].tileContents as tileContent, i}
-    <Tile tileIndex={i} {tileContent} --tile-color={steps.v[stepsIndexer.v].tileColors[i]} />
+    <Tile --tile-color={steps.v[stepsIndexer.v].tileColors[i]} tileIndex={i} {tileContent} />
   {/each}
 
   <div>
@@ -17,11 +18,11 @@
   </div>
 </main>
 
-<style lang="scss">
-  @import "$lib/../mixins.scss";
-
+<style>
   main {
-    @include center-div;
+    align-items: center;
+    display: flex;
+    justify-content: center;
     flex: 1;
 
     div {
@@ -31,13 +32,17 @@
     }
   }
 
-  main:global {
-    div {
-      @include center-div;
-      height: var(--tile-height);
-      margin: var(--lr-margin);
-      min-width: var(--tile-height);
-      padding: 0.25rem;
+  :global {
+    main {
+      div {
+        align-items: center;
+        display: flex;
+        justify-content: center;
+        height: var(--tile-height);
+        margin: var(--lr-margin);
+        min-width: var(--tile-height);
+        padding: 0.25rem;
+      }
     }
   }
 </style>

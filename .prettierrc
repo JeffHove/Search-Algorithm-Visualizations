@@ -1,6 +1,0 @@
-{
-  "printWidth": 140,
-  "plugins": ["prettier-plugin-svelte", "prettier-plugin-css-order"],
-  "cssDeclarationSorterOrder": "alphabetical",
-  "overrides": [{ "files": "*.svelte", "options": { "parser": "svelte" } }]
-}

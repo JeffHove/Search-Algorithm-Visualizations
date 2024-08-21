@@ -1,5 +1,5 @@
 <script lang="ts">
-  const { tileIndex, tileContent }: { tileIndex: number; tileContent: number | null } = $props();
+  const { tileContent, tileIndex }: { tileContent: number | null; tileIndex: number } = $props();
 </script>
 
 <div style:background-color="var(--tile-color)" tabindex="-1">
@@ -9,7 +9,7 @@
   </div>
 </div>
 
-<style lang="scss">
+<style>
   div {
     position: relative;
 

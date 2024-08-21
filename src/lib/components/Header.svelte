@@ -7,23 +7,21 @@
   <header aria-label="Header algorithms checklist">
     <div>
       {#each Object.keys(unsortedAlgos) as key}
-        <input type="radio" name="algorithm" value={key} bind:group={algorithm.v} id={key} />
+        <input bind:group={algorithm.v} name="algorithm" type="radio" value={key} id={key} />
         <label for={key}>{key}</label>
       {/each}
     </div>
 
     <div>
       {#each Object.keys(sortedAlgos) as key}
-        <input type="radio" name="algorithm" value={key} bind:group={algorithm.v} id={key} />
+        <input bind:group={algorithm.v} name="algorithm" type="radio" value={key} id={key} />
         <label for={key}>{key}</label>
       {/each}
     </div>
   </header>
 {/if}
 
-<style lang="scss">
-  @import "$lib/../mixins.scss";
-
+<style>
   header {
     border-bottom: white 2px solid;
     font-size: 0.75rem;
@@ -35,7 +33,7 @@
 
       input[type="radio"],
       label {
-        // input[type="radio"] needs this, set opacity to 1 to see.
+        /* input[type="radio"] needs this, set opacity to 1 to see. */
         cursor: pointer;
       }
 
@@ -44,7 +42,8 @@
         position: fixed;
 
         &:checked + label {
-          @include hover-styles;
+          background-color: var(--hover-color);
+          color: var(--secondary-color);
         }
       }
 
@@ -54,7 +53,8 @@
         transition: var(--transition);
 
         &:hover {
-          @include hover-styles;
+          background-color: var(--hover-color);
+          color: var(--secondary-color);
         }
       }
     }

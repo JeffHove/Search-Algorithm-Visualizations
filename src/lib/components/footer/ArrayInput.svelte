@@ -4,12 +4,12 @@
 
   let arrayInput: string = $state("");
 
-  function createStep0TileColors(): void {
+  const createStep0TileColors = (): void => {
     steps.v[0].tileColors = [];
     for (let i: number = 0; i < steps.v[0].tileContents.length; i++) steps.v[0].tileColors[i] = "var(--secondary-color)";
-  }
+  };
 
-  function pop(): void {
+  const pop = (): void => {
     if (arrayInput === "") steps.v[0].tileContents.pop();
     else {
       const toRemove: number[] = stringToNumberArray(arrayInput);
@@ -19,46 +19,45 @@
       }
     }
     createStep0TileColors();
-  }
+  };
 
-  function push(): void {
+  const push = (): void => {
     if (arrayInput === "") steps.v[0].tileContents.push(getRandomIntBetween(-9, 99));
     else steps.v[0].tileContents.push(...stringToNumberArray(arrayInput));
     createStep0TileColors();
-  }
+  };
 
-  function handleKeydown(e: KeyboardEvent): void {
+  const handleKeydown = (e: KeyboardEvent): void => {
     if (e.key === "Enter") {
       if (e.shiftKey) pop();
       else push();
     }
-  }
+  };
 </script>
 
 {#if steps.v[0].tileContents.length > 0}
-  <button onclick={pop} aria-label="Remove array input">
+  <button aria-label="Remove array input" onclick={pop}>
     -
     <span style:margin-left="-.8rem">Shift + Enter</span>
   </button>
 {:else}
   <button style:visibility="hidden"></button>
 {/if}
-<!-- prettier-ignore -->
 <input
-  class="fa-solid"
-  type="text"
-  placeholder="#, #, ..."
-  bind:value={arrayInput}
   oninput={(): void => { arrayInput = sanitizeInput(arrayInput, "0-9, -"); }}
   aria-label="Array input: number comma number comma etc."
   onkeydown={handleKeydown}
+  placeholder="#, #, ..."
+  bind:value={arrayInput}
+  class="fa-solid"
+  type="text"
 />
-<button onclick={push} aria-label="Add array input">
+<button aria-label="Add array input" onclick={push}>
   +
   <span style:margin-left=".5rem">Enter</span>
 </button>
 
-<style lang="scss">
+<style>
   input[type="text"] {
     width: calc(var(--button-width) * 3);
 

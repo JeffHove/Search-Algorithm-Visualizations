@@ -1,6 +1,6 @@
 # Search-Algorithm-Visualizations
 
-A personal project to visualize search algorithms.
+A project to visualize search algorithms.
 
 Current algorithms:
 

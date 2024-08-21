@@ -1,8 +1,9 @@
 <script lang="ts">
+  import { steps } from "$lib/refs.svelte";
+
   import LeftRightReset from "./LeftRightReset.svelte";
   import ArrayInput from "./ArrayInput.svelte";
   import Clipboard from "./Clipboard.svelte";
-  import { steps } from "$lib/refs.svelte";
   import Target from "./Target.svelte";
   import Go from "./Go.svelte";
 </script>
@@ -24,49 +25,50 @@
   {/if}
 </footer>
 
-<style lang="scss">
-  @import "$lib/../mixins.scss";
-
+<style>
   footer {
     display: flex;
     height: 2.25rem;
     justify-content: center;
   }
 
-  footer:global {
-    button,
-    input {
-      border: none;
-      font-size: inherit;
-      margin: var(--lr-margin);
-      padding: 0;
-    }
-
-    button {
-      background-color: var(--secondary-color);
-      color: inherit;
-      cursor: pointer;
-      font-weight: inherit;
-      transition: var(--transition);
-      width: var(--button-width);
-
-      &:hover {
-        @include hover-styles;
+  :global {
+    footer {
+      button,
+      input {
+        border: none;
+        font-size: inherit;
+        margin: var(--lr-margin);
+        padding: 0;
       }
 
-      &:active {
-        background-color: var(--primary-color);
-        transition: none;
+      button {
+        background-color: var(--secondary-color);
+        color: inherit;
+        cursor: pointer;
+        font-weight: inherit;
+        transition: var(--transition);
+        width: var(--button-width);
+
+        &:hover {
+          background-color: var(--hover-color);
+          color: var(--secondary-color);
+        }
+
+        &:active {
+          background-color: var(--primary-color);
+          transition: none;
+        }
       }
-    }
 
-    input {
-      min-width: 0; // Window Resizing
-      outline: none;
-      text-align: center;
+      input {
+        min-width: 0; /* Window Resizing */
+        outline: none;
+        text-align: center;
 
-      &:focus::placeholder {
-        color: transparent;
+        &:focus::placeholder {
+          color: transparent;
+        }
       }
     }
   }
