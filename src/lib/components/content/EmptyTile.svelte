@@ -4,7 +4,7 @@
 </script>
 
 <div tabindex="-1">
-  {step.v.tiles[tileIndex].content}
+  {step.v.metaTiles[tileIndex].content}
 </div>
 
 <style>

@@ -1,12 +1,7 @@
 <script lang="ts">
-  import { stepListIndexer, stepList, algorithm, target, step } from "$lib/refs.svelte";
+  import { stepListIndexer, algorithm, stepList, target, step } from "$lib/refs.svelte";
   import { type SearchAlgorithm, unsortedAlgos, sortedAlgos } from "$lib/algos";
   import { changeTileContent, addStep } from "$lib/shared.svelte";
-
-  const hideTiles = () => {
-    for (let i = 0; i < step.v.tiles.length; i++) changeTileContent(i, null);
-    addStep();
-  };
 
   const finalResult = (target: number, targetIndex: number) => {
     if (targetIndex !== -1) step.v.resultContent = "Target " + target + " is in the array at index " + targetIndex;
@@ -24,13 +19,14 @@
       if (searchFunction) {
         if (sortedAlgos[algorithm.v]) step.v.tiles.sort((a, b) => Number(a.content) - Number(b.content));
         addStep();
-        hideTiles();
-        returnedIndex = searchFunction(Number(target.v), [...step.v.tiles.map(tile => tile.content)] as number[]);
+        for (let i = 0; i < step.v.tiles.length; i++) changeTileContent(i, null, true);
+        addStep();
+        returnedIndex = searchFunction(Number(target.v), stepList.v[0].tiles.map(tile => tile.content) as number[]);
       }
       else throw new Error(`Algorithm ${algorithm.v} has no matching key.`);
       finalResult(Number(target.v), returnedIndex);
-      stepListIndexer.v = 0;
-      step.v = $state.snapshot(stepList.v[0]);
+      stepListIndexer.v = 1;
+      step.v = $state.snapshot(stepList.v[1]);
     }
   };
 </script>

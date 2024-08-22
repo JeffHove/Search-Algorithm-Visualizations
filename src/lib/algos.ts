@@ -1,10 +1,10 @@
 import { changeTileContent, addStep } from "$lib/shared.svelte";
-import { step } from "$lib/refs.svelte";
+import { stepList, step } from "$lib/refs.svelte";
 
 export type SearchAlgorithm = (target: number, A: number[], leftIndex?: number, rightIndex?: number) => number;
 
 const revealTile = (tileIndex: number, isStepless?: undefined | boolean) => {
-  changeTileContent(tileIndex, step.v.tiles[tileIndex].content as number, true);
+  changeTileContent(tileIndex, stepList.v[0].tiles[tileIndex].content as number, true);
   if (!isStepless) addStep();
 };
 
@@ -23,9 +23,9 @@ const newEmptyTile = () => {
   step.v.metaTiles.push({ content: null, color: "" });
 };
 
-const changeEmptyTileContent = (tileIndex: number, content: number | null, isStepless?: undefined | boolean) => {
+const changeEmptyTileContent = (tileIndex: number, content: number | null) => {
   step.v.metaTiles[tileIndex].content = content;
-  if (!isStepless) addStep();
+  addStep();
 };
 
 const linear: SearchAlgorithm = (target, A) => {
@@ -139,8 +139,8 @@ const fibonacci: SearchAlgorithm = (target, A) => {
 };
 
 const interpolation: SearchAlgorithm = (target, A, leftIndex = 0, rightIndex = A.length - 1) => {
-  revealTile(leftIndex);
-  revealTile(rightIndex, true);
+  revealTile(leftIndex, true);
+  revealTile(rightIndex);
   while (leftIndex <= rightIndex && target >= A[leftIndex] && target <= A[rightIndex]) {
     if (leftIndex === rightIndex) {
       colorTile(leftIndex, "green");
@@ -221,8 +221,8 @@ const meta: SearchAlgorithm = (target, A) => {
       changeEmptyTileContent(numBitsNeededForMaxIndex - 1 - i, 1);
       continue;
     }
-    colorTiles(cutoffCandidate, A.length - 1, "white");
-    changeEmptyTileContent(numBitsNeededForMaxIndex - 1 - i, 0, true);
+    colorTiles(cutoffCandidate, A.length - 1, "white", true);
+    changeEmptyTileContent(numBitsNeededForMaxIndex - 1 - i, 0);
   }
 
   colorTile(cutoff, "green");
@@ -237,8 +237,8 @@ const ternary: SearchAlgorithm = (target, A, leftIndex = 0, rightIndex = A.lengt
     const pivot1: number = leftIndex + Math.floor((rightIndex - leftIndex) / 3);
     const pivot2: number = rightIndex - Math.floor((rightIndex - leftIndex) / 3);
 
-    colorTile(pivot1, "green");
-    colorTile(pivot2, "green", true);
+    colorTile(pivot1, "green", true);
+    colorTile(pivot2, "green");
     if (A[pivot1] === target) return pivot1;
     if (A[pivot2] === target) return pivot2;
 
@@ -253,8 +253,8 @@ const ternary: SearchAlgorithm = (target, A, leftIndex = 0, rightIndex = A.lengt
     else {
       leftIndex = pivot1 + 1;
       rightIndex = pivot2 - 1;
-      colorTiles(0, pivot1, "white");
-      colorTiles(pivot2, A.length - 1, "white", true);
+      colorTiles(0, pivot1, "white", true);
+      colorTiles(pivot2, A.length - 1, "white");
     }
   }
 

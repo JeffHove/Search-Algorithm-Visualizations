@@ -1,6 +1,6 @@
 <script lang="ts">
-  import { stepList, algorithm, step } from "$lib/refs.svelte";
   import { unsortedAlgos, sortedAlgos } from "$lib/algos";
+  import { algorithm, stepList } from "$lib/refs.svelte";
 </script>
 
 {#if stepList.v.length === 0}

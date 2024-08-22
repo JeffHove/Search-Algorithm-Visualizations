@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { stepListIndexer, stepList, algorithm, target, step } from "$lib/refs.svelte";
+  import { stepListIndexer, algorithm, stepList, target, step } from "$lib/refs.svelte";
 
   const onclick = () => {
     step.v = $state.snapshot(stepList.v[0]);
@@ -11,13 +11,13 @@
 <div>
   Target: {target.v}
   <br />
-  Visual: {stepListIndexer.v + 1} / {stepList.v.length}
+  Visual: {stepListIndexer.v} / {stepList.v.length - 1}
   <br />
   Algorithm: {algorithm.v}
 </div>
-{#if stepListIndexer.v !== 0}
+{#if stepListIndexer.v !== 1}
   <button
-    onclick={() => { stepListIndexer.v--; step.v = $state.snapshot(stepList.v[stepListIndexer.v]); console.log($state.snapshot(stepList.v[stepListIndexer.v])); }}
+    onclick={() => { stepListIndexer.v--; step.v = $state.snapshot(stepList.v[stepListIndexer.v]); }}
     class="fa-solid fa-arrow-left"
     aria-label="Left arrow"
   ></button>
@@ -26,7 +26,7 @@
 {/if}
 {#if stepListIndexer.v !== stepList.v.length - 1}
   <button
-    onclick={() => { stepListIndexer.v++; step.v = $state.snapshot(stepList.v[stepListIndexer.v]); console.log($state.snapshot(stepList.v[stepListIndexer.v])); }}
+    onclick={() => { stepListIndexer.v++; step.v = $state.snapshot(stepList.v[stepListIndexer.v]); }}
     class="fa-solid fa-arrow-right"
     aria-label="Right arrow"
   ></button>
