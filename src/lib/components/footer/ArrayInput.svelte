@@ -33,7 +33,7 @@
 {#if step.v.tiles.length > 0}
   <button aria-label="Remove array input" onclick={pop}>
     -
-    <span style:margin-left="-.8rem">Shift + Enter</span>
+    <span style="margin-left: -.8rem;">Shift + Enter</span>
   </button>
 {:else}
   <button style:visibility="hidden"></button>
