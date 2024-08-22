@@ -1,33 +1,22 @@
 <script lang="ts">
   import { sanitizeInput } from "$lib/shared.svelte";
-  import { steps } from "$lib/refs.svelte";
+  import { step } from "$lib/refs.svelte";
 
-  let arrayInput = $state("");
-
-  const getRandomIntBetween = (min: number, max: number): number => Math.floor(Math.random() * (max - min)) + min;
-  const stringToNumberArray = (input: string): number[] => input.split(",").map(str => parseFloat(str.trim())).filter(num => !isNaN(num));
-
-  const createStep0TileColors = () => {
-    steps.v[0].tileColors = [];
-    for (let i = 0; i < steps.v[0].tileContents.length; i++) steps.v[0].tileColors[i] = "var(--secondary-color)";
-  };
+  const getRandomIntInclusive = (min: number, max: number): number => Math.floor(Math.random() * (max - min + 1)) + min;
 
   const pop = () => {
-    if (arrayInput === "") steps.v[0].tileContents.pop();
+    if (arrayInput === "") step.v.tiles.pop();
     else {
-      const toRemove = stringToNumberArray(arrayInput);
-      for (let i = 0; i < toRemove.length; i++) {
-        const index = steps.v[0].tileContents.indexOf(toRemove[i]);
-        if (index !== -1) steps.v[0].tileContents.splice(index, 1);
+      for (let i = 0; i < asNumberArray.length; i++) {
+        const targetNumIndex = step.v.tiles.map(tile => tile.content).indexOf(asNumberArray[i]);
+        if (targetNumIndex !== -1) step.v.tiles.splice(targetNumIndex, 1);
       }
     }
-    createStep0TileColors();
   };
 
   const push = () => {
-    if (arrayInput === "") steps.v[0].tileContents.push(getRandomIntBetween(-9, 99));
-    else steps.v[0].tileContents.push(...stringToNumberArray(arrayInput));
-    createStep0TileColors();
+    if (arrayInput === "") step.v.tiles.push({ content: getRandomIntInclusive(-9, 99), color: "var(--secondary-color)" });
+    else for (let i = 0; i < asNumberArray.length; i++) step.v.tiles.push({ color: "var(--secondary-color)", content: asNumberArray[i] });
   };
 
   const handleKeydown = (e: KeyboardEvent) => {
@@ -36,9 +25,12 @@
       else push();
     }
   };
+
+  let arrayInput = $state("");
+  let asNumberArray = $derived(arrayInput.split(",").map(str => parseFloat(str.trim())).filter(num => !isNaN(num)));
 </script>
 
-{#if steps.v[0].tileContents.length > 0}
+{#if step.v.tiles.length > 0}
   <button aria-label="Remove array input" onclick={pop}>
     -
     <span style:margin-left="-.8rem">Shift + Enter</span>

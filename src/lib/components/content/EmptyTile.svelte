@@ -1,9 +1,10 @@
 <script lang="ts">
-  const { tileContent }: { tileContent: number | null } = $props();
+  import { step } from "$lib/refs.svelte";
+  const { tileIndex }: { tileIndex: number } = $props();
 </script>
 
 <div tabindex="-1">
-  {tileContent}
+  {step.v.tiles[tileIndex].content}
 </div>
 
 <style>

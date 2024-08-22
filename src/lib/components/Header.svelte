@@ -1,9 +1,9 @@
 <script lang="ts">
+  import { stepList, algorithm, step } from "$lib/refs.svelte";
   import { unsortedAlgos, sortedAlgos } from "$lib/algos";
-  import { algorithm, steps } from "$lib/refs.svelte";
 </script>
 
-{#if steps.v.length === 1}
+{#if stepList.v.length === 0}
   <header aria-label="Header algorithms checklist">
     <div>
       {#each Object.keys(unsortedAlgos) as key}

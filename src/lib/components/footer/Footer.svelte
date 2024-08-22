@@ -3,14 +3,14 @@
   import ArrayInput from "$lib/components/footer/ArrayInput.svelte";
   import Clipboard from "$lib/components/footer/Clipboard.svelte";
   import Target from "$lib/components/footer/Target.svelte";
+  import { stepList, step } from "$lib/refs.svelte";
   import Go from "$lib/components/footer/Go.svelte";
-  import { steps } from "$lib/refs.svelte";
 </script>
 
 <footer aria-label="Footer">
-  {#if steps.v.length === 1}
+  {#if stepList.v.length === 0}
     <ArrayInput />
-    {#if steps.v[0].tileContents.length > 0}
+    {#if step.v.tiles.length > 0}
       <Clipboard />
       <Go />
       <Target />

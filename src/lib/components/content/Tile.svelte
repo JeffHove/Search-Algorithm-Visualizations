@@ -1,9 +1,10 @@
 <script lang="ts">
-  const { tileContent, tileIndex }: { tileContent: number | null; tileIndex: number } = $props();
+  import { step } from "$lib/refs.svelte";
+  const { tileIndex }: { tileIndex: number } = $props();
 </script>
 
-<div style:background-color="var(--tile-color)" tabindex="-1">
-  {tileContent}
+<div style:background-color={step.v.tiles[tileIndex].color} tabindex="-1">
+  {step.v.tiles[tileIndex].content}
   <div>
     {tileIndex}
   </div>

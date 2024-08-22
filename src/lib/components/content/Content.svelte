@@ -1,18 +1,18 @@
 <script lang="ts">
   import EmptyTile from "$lib/components/content/EmptyTile.svelte";
   import Tile from "$lib/components/content/Tile.svelte";
-  import { stepsIndexer, steps } from "$lib/refs.svelte";
+  import { step } from "$lib/refs.svelte";
 </script>
 
 <main>
-  {#each steps.v[stepsIndexer.v].tileContents as tileContent, i}
-    <Tile --tile-color={steps.v[stepsIndexer.v].tileColors[i]} tileIndex={i} {tileContent} />
+  {#each step.v.tiles as _, i}
+    <Tile tileIndex={i} />
   {/each}
 
   <div>
-    {steps.v[stepsIndexer.v].resultContent}
-    {#each steps.v[stepsIndexer.v].metaTileContents as tileContent}
-      <EmptyTile {tileContent} />
+    {step.v.resultContent}
+    {#each step.v.metaTiles as _, i}
+      <EmptyTile tileIndex={i} />
     {/each}
   </div>
 </main>

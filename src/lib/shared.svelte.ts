@@ -1,8 +1,8 @@
-import { stepsIndexer, steps } from "$lib/refs.svelte";
+import { stepListIndexer, stepList, step } from "$lib/refs.svelte";
 
 export const addStep = () => {
-  stepsIndexer.v++;
-  steps.v[stepsIndexer.v] = $state.snapshot(steps.v[stepsIndexer.v - 1]);
+  stepListIndexer.v++;
+  stepList.v.push($state.snapshot(step.v));
 };
 
 export const sanitizeInput = (s: string, allowedChars: string) => {
@@ -11,6 +11,6 @@ export const sanitizeInput = (s: string, allowedChars: string) => {
 };
 
 export const changeTileContent = (tileIndex: number, newContent: number | null, isStepless?: undefined | boolean) => {
+  step.v.tiles[tileIndex].content = newContent;
   if (!isStepless) addStep();
-  steps.v[stepsIndexer.v].tileContents[tileIndex] = newContent;
 };

@@ -1,8 +1,8 @@
 <script lang="ts">
-  import { steps } from "$lib/refs.svelte";
+  import { step } from "$lib/refs.svelte";
 
   const onclick = () => {
-    navigator.clipboard.writeText(steps.v[0].tileContents.join(", "));
+    navigator.clipboard.writeText(step.v.tiles.map(tile => tile.content).join(", "));
     alert("Array copied to clipboard");
   };
 </script>

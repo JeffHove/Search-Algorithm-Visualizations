@@ -1,31 +1,31 @@
 import { changeTileContent, addStep } from "$lib/shared.svelte";
-import { stepsIndexer, steps } from "$lib/refs.svelte";
+import { step } from "$lib/refs.svelte";
 
 export type SearchAlgorithm = (target: number, A: number[], leftIndex?: number, rightIndex?: number) => number;
 
 const revealTile = (tileIndex: number, isStepless?: undefined | boolean) => {
+  changeTileContent(tileIndex, step.v.tiles[tileIndex].content as number, true);
   if (!isStepless) addStep();
-  changeTileContent(tileIndex, steps.v[0].tileContents[tileIndex] as number, true);
 };
 
 const colorTile = (tileIndex: number, color: string, isStepless?: undefined | boolean) => {
-  if (!isStepless) addStep();
-  steps.v[stepsIndexer.v].tileColors[tileIndex] = color;
+  step.v.tiles[tileIndex].color = color;
   revealTile(tileIndex, true);
+  if (!isStepless) addStep();
 };
 
 const colorTiles = (startIndex: number, endIndex: number, color: string, isStepless?: undefined | boolean) => {
-  if (!isStepless) addStep();
   for (let i = startIndex; i <= endIndex; i++) colorTile(i, color, true);
+  if (!isStepless) addStep();
 };
 
 const newEmptyTile = () => {
-  steps.v[stepsIndexer.v].metaTileContents.push(null);
+  step.v.metaTiles.push({ content: null, color: "" });
 };
 
 const changeEmptyTileContent = (tileIndex: number, content: number | null, isStepless?: undefined | boolean) => {
+  step.v.metaTiles[tileIndex].content = content;
   if (!isStepless) addStep();
-  steps.v[stepsIndexer.v].metaTileContents[tileIndex] = content;
 };
 
 const linear: SearchAlgorithm = (target, A) => {

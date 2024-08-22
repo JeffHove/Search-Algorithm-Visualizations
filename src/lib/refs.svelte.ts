@@ -1,15 +1,17 @@
 type Step = {
-  metaTileContents: (number | null)[];
-  tileContents: (number | null)[];
-
   resultContent: string;
-
-  tileColors: string[];
+  metaTiles: Tile[];
+  tiles: Tile[];
 };
 
 type Ref<T> = {
   reset: () => void;
   v: T;
+};
+
+type Tile = {
+  content: number | null;
+  color: string;
 };
 
 const deepCopy = (obj: object): object => JSON.parse(JSON.stringify(obj)) as object;
@@ -28,5 +30,6 @@ const ref = <T>(initial: T): Ref<T> => {
 
 export const algorithm: Ref<string> = ref<string>("Linear");
 export const target: Ref<string> = ref<string>("");
-export const stepsIndexer: Ref<number> = ref<number>(0);
-export const steps: Ref<Step[]> = ref<Step[]>([{ metaTileContents: [], resultContent: "", tileContents: [], tileColors: [] }]);
+export const step: Ref<Step> = ref<Step>({ resultContent: "", metaTiles: [], tiles: [] });
+export const stepList: Ref<Step[]> = ref<Step[]>([]);
+export const stepListIndexer: Ref<number> = ref<number>(0);
