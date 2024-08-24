@@ -33,10 +33,10 @@
 {#if step.v.tiles.length > 0}
   <button aria-label="Remove array input" onclick={pop}>
     -
-    <span style="margin-left: -.8rem;">Shift + Enter</span>
+    <span class="absolute -ml-2 -mt-12 hidden text-xs text-secondary-color">Shift + Enter</span>
   </button>
 {:else}
-  <button style:visibility="hidden"></button>
+  <button class="invisible"></button>
 {/if}
 <input
   oninput={() => { arrayInput = sanitizeInput(arrayInput, "0-9, -"); }}
@@ -44,34 +44,17 @@
   onkeydown={handleKeydown}
   placeholder="#, #, ..."
   bind:value={arrayInput}
-  class="fa-solid"
+  class="fa-solid w-36"
   type="text"
 />
 <button aria-label="Add array input" onclick={push}>
   +
-  <span style:margin-left=".5rem">Enter</span>
+  <span class="absolute -mt-12 ml-2 hidden text-xs text-secondary-color">Enter</span>
 </button>
 
 <style>
-  input[type="text"] {
-    width: calc(var(--button-width) * 3);
-
-    &:focus + button span {
-      display: block;
-    }
-  }
-
-  button {
-    span {
-      color: var(--secondary-color);
-      display: none;
-      font-size: 0.75rem;
-      margin-top: -2.75rem;
-      position: absolute;
-    }
-
-    &:has(+ input[type="text"]:focus) span {
-      display: block;
-    }
+  input[type="text"]:focus + button span,
+  button:has(+ input[type="text"]:focus) span {
+    display: block;
   }
 </style>

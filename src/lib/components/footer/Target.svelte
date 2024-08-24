@@ -8,11 +8,5 @@
   aria-label="Algorithm target number"
   placeholder="&#xf140"
   bind:value={target.v}
-  class="fa-solid"
+  class="fa-solid w-12"
 />
-
-<style>
-  input {
-    width: var(--button-width);
-  }
-</style>

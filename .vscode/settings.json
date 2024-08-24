@@ -1,0 +1,4 @@
+// https://github.com/tailwindlabs/tailwindcss/discussions/5258
+{
+  "css.customData": [".vscode/tailwind.json"]
+}

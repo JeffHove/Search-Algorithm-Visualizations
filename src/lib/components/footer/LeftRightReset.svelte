@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { stepListIndexer, algorithm, stepList, target, step } from "$lib/refs.svelte";
+  import { stepListIndexer, stepList, step } from "$lib/refs.svelte";
 
   const onclick = () => {
     step.v = $state.snapshot(stepList.v[0]);
@@ -8,13 +8,6 @@
   };
 </script>
 
-<div>
-  Target: {target.v}
-  <br />
-  Visual: {stepListIndexer.v} / {stepList.v.length - 1}
-  <br />
-  Algorithm: {algorithm.v}
-</div>
 {#if stepListIndexer.v !== 1}
   <button
     onclick={() => { stepListIndexer.v--; step.v = $state.snapshot(stepList.v[stepListIndexer.v]); }}
@@ -22,7 +15,7 @@
     aria-label="Left arrow"
   ></button>
 {:else}
-  <button style:visibility="hidden"></button>
+  <button class="invisible"></button>
 {/if}
 {#if stepListIndexer.v !== stepList.v.length - 1}
   <button
@@ -31,14 +24,6 @@
     aria-label="Right arrow"
   ></button>
 {:else}
-  <button style:visibility="hidden"></button>
+  <button class="invisible"></button>
 {/if}
 <button class="fa-solid fa-rotate-right" aria-label="Reset footer" {onclick}></button>
-
-<style>
-  div {
-    bottom: 20px;
-    left: 20px;
-    position: absolute;
-  }
-</style>

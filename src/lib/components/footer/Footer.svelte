@@ -7,7 +7,7 @@
   import Go from "$lib/components/footer/Go.svelte";
 </script>
 
-<footer aria-label="Footer">
+<footer class="flex h-9 justify-center" aria-label="Footer">
   {#if stepList.v.length === 0}
     <ArrayInput />
     {#if step.v.tiles.length > 0}
@@ -15,9 +15,9 @@
       <Go />
       <Target />
     {:else}
-      <button style:visibility="hidden"></button>
-      <button style:visibility="hidden"></button>
-      <button style:visibility="hidden"></button>
+      <button class="invisible"></button>
+      <button class="invisible"></button>
+      <button class="invisible"></button>
     {/if}
   {:else}
     <LeftRightReset />
@@ -25,19 +25,13 @@
 </footer>
 
 <style>
-  footer {
-    display: flex;
-    height: 2.25rem;
-    justify-content: center;
-  }
-
   :global {
     footer {
       button,
       input {
         border: none;
         font-size: inherit;
-        margin: var(--lr-margin);
+        margin: 0 1px;
         padding: 0;
       }
 
@@ -46,11 +40,11 @@
         color: inherit;
         cursor: pointer;
         font-weight: inherit;
-        transition: var(--transition);
-        width: var(--button-width);
+        transition: background-color 0.15s ease-out, color 0.15s ease-out;
+        width: 3rem;
 
         &:hover {
-          background-color: var(--hover-color);
+          background-color: white;
           color: var(--secondary-color);
         }
 
@@ -64,6 +58,7 @@
         min-width: 0; /* Window Resizing */
         outline: none;
         text-align: center;
+        color: black;
 
         &:focus::placeholder {
           color: transparent;
