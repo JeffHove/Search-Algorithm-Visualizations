@@ -11,7 +11,7 @@
       <label class="cursor-pointer bg-secondary-color px-2 py-1 transition-colors hover:bg-white hover:text-secondary-color" for={key}>{key}</label>
     {/each}
   {:else}
-    <div class="p-2">
+    <div class="p-2 text-xs">
       Algorithm: {algorithm.v} <br />
       Visual: {stepListIndexer.v} / {stepList.v.length - 1} <br />
       Target: {target.v}
