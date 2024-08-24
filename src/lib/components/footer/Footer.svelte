@@ -8,7 +8,7 @@
 </script>
 
 <footer class="flex h-9 justify-center" aria-label="Footer">
-  {#if stepList.v.length === 0}
+  {#if !stepList.goPressed}
     <ArrayInput />
     {#if step.v.tiles.length > 0}
       <Clipboard />

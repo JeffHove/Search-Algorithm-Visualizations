@@ -14,6 +14,10 @@ type Tile = {
   color: string;
 };
 
+type RefStepList = Ref<Step[]> & {
+  goPressed: boolean;
+};
+
 const deepCopy = (obj: object): object => JSON.parse(JSON.stringify(obj)) as object;
 
 const ref = <T>(initial: T): Ref<T> => {
@@ -28,8 +32,20 @@ const ref = <T>(initial: T): Ref<T> => {
   };
 };
 
+const refStepList = (): RefStepList => {
+  const baseRef: Ref<Step[]> = ref<Step[]>([]);
+  const goPressed: boolean = $derived(baseRef.v.length > 0);
+
+  return {
+    get goPressed(): boolean { return goPressed; },
+    set v(value: Step[]) { baseRef.v = value; },
+    get v(): Step[] { return baseRef.v; },
+    reset: baseRef.reset,
+  };
+};
+
 export const algorithm: Ref<string> = ref<string>("Linear");
 export const target: Ref<string> = ref<string>("");
 export const step: Ref<Step> = ref<Step>({ resultContent: "", metaTiles: [], tiles: [] });
-export const stepList: Ref<Step[]> = ref<Step[]>([]);
+export const stepList: RefStepList = refStepList();
 export const stepListIndexer: Ref<number> = ref<number>(0);

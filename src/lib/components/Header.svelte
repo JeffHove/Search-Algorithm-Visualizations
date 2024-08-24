@@ -4,7 +4,7 @@
 </script>
 
 <header class="flex flex-wrap justify-center border-b-2 border-b-white" aria-label="Header algorithms checklist">
-  {#if stepList.v.length === 0}
+  {#if !stepList.goPressed}
     {#each [...Object.keys(unsortedAlgos), ...Object.keys(sortedAlgos)] as key, i}
       {#if i === Object.keys(unsortedAlgos).length}&nbsp;{/if}
       <input bind:group={algorithm.v} name="algorithm" class="hidden" type="radio" value={key} id={key} />
