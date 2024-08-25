@@ -157,12 +157,12 @@ const interpolation: SearchAlgorithm = (target, A, leftIndex = 0, rightIndex = A
     if (A[pivot] < target) {
       colorTiles(0, pivot, "white");
       leftIndex = pivot + 1;
-      revealTile(leftIndex);
+      if (leftIndex !== rightIndex) revealTile(leftIndex);
     }
     else {
       colorTiles(pivot, A.length - 1, "white");
       rightIndex = pivot - 1;
-      revealTile(rightIndex);
+      if (leftIndex !== rightIndex) revealTile(rightIndex);
     }
   }
 
