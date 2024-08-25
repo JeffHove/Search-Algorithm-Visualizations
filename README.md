@@ -1,3 +1,7 @@
+# Algos
+
+View here: https://github.com/Tree52/Search-Algorithm-Visualizations/blob/main/src/lib/algos.ts
+
 # Search-Algorithm-Visualizations
 
 A project to visualize search algorithms.
