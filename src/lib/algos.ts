@@ -171,31 +171,31 @@ const interpolation: SearchAlgorithm = (target, A, leftIndex = 0, rightIndex = A
 };
 
 const jump: SearchAlgorithm = (target, A) => {
-  let j = Math.floor(Math.sqrt(A.length));
+  let leftIndex = 0;
+  let rightIndex = Math.floor(Math.sqrt(A.length));
 
-  let i = 0;
-  revealTile(Math.min(j, A.length) - 1);
-  while (A[Math.min(j, A.length) - 1] < target) {
-    colorTiles(0, Math.min(j, A.length) - 1, "white");
-    i = j;
-    j += Math.floor(Math.sqrt(A.length));
-    if (i >= A.length) return -1;
-    revealTile(Math.min(j, A.length) - 1);
+  revealTile(Math.min(rightIndex, A.length) - 1);
+  while (A[Math.min(rightIndex, A.length) - 1] < target) {
+    colorTiles(0, Math.min(rightIndex, A.length) - 1, "white");
+    leftIndex = rightIndex;
+    rightIndex += Math.floor(Math.sqrt(A.length));
+    if (leftIndex >= A.length) return -1;
+    revealTile(Math.min(rightIndex, A.length) - 1);
   }
 
-  if (j < A.length - 1) {
-    colorTiles(j, A.length - 1, "white");
-    revealTile(i);
+  if (rightIndex < A.length - 1) {
+    colorTiles(rightIndex, A.length - 1, "white");
+    revealTile(leftIndex);
   }
-  while (A[i] < target) {
-    colorTile(i, "white");
-    i++;
-    if (i === Math.min(j, A.length)) return -1;
-    if (i !== j - 1 && i !== A.length - 1) revealTile(i);
+  while (A[leftIndex] < target) {
+    colorTile(leftIndex, "white");
+    leftIndex++;
+    if (leftIndex === Math.min(rightIndex, A.length)) return -1;
+    if (leftIndex !== rightIndex - 1 && leftIndex !== A.length - 1) revealTile(leftIndex);
   }
 
-  colorTile(i, "green");
-  if (A[i] === target) return i;
+  colorTile(leftIndex, "green");
+  if (A[leftIndex] === target) return leftIndex;
   colorTiles(0, A.length - 1, "white");
 
   return -1;
