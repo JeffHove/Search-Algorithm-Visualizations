@@ -87,7 +87,7 @@ const exponential: SearchAlgorithm = (target, A) => {
   if (i < A.length) revealTile(i);
   while (i < A.length && A[i] <= target) {
     colorTiles(0, i - 1, "white");
-    i = i * 2;
+    i *= 2;
     if (i < A.length) revealTile(i);
   }
 
