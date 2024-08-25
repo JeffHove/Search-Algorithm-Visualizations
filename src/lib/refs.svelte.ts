@@ -14,9 +14,9 @@ type Tile = {
   color: string;
 };
 
-type RefStepList = Ref<Step[]> & {
+type RefStepList = {
   goPressed: boolean;
-};
+} & Ref<Step[]>;
 
 const deepCopy = (obj: object): object => JSON.parse(JSON.stringify(obj)) as object;
 

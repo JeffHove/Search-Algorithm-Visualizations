@@ -2,9 +2,8 @@
   import { step } from "$lib/refs.svelte";
 </script>
 
-
 <main class="relative flex flex-1 flex-wrap items-center justify-center">
-  <a href="https://github.com/Tree52/Search-Algorithm-Visualizations" class="absolute top-1 right-2">
+  <a href="https://github.com/Tree52/Search-Algorithm-Visualizations" class="absolute right-2 top-1">
     <i class="fa-brands fa-github"></i>
   </a>
   {#each step.v.tiles as _, i}
