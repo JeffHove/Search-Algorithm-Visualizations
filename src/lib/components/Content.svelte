@@ -2,7 +2,11 @@
   import { step } from "$lib/refs.svelte";
 </script>
 
-<main class="flex flex-1 flex-wrap items-center justify-center">
+
+<main class="relative flex flex-1 flex-wrap items-center justify-center">
+  <a href="https://github.com/Tree52/Search-Algorithm-Visualizations" class="absolute top-1 right-2">
+    <i class="fa-brands fa-github"></i>
+  </a>
   {#each step.v.tiles as _, i}
     <div class="relative m-px flex min-h-7 min-w-7 items-center justify-center p-1 hover:p-1.5" style:background-color={step.v.tiles[i].color} tabindex="-1">
       {step.v.tiles[i].content}
