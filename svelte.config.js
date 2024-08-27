@@ -5,6 +5,7 @@ import adapter from "@sveltejs/adapter-static";
 const config = {
   preprocess: vitePreprocess(),
   kit: { adapter: adapter() },
+  paths: { base: process.env.NODE_ENV === "production" ? "/Search-Algorithm-Visualizations" : "" }
 };
 
 export default config;
