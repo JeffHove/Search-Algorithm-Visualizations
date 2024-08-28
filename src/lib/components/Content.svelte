@@ -23,7 +23,7 @@
       {#await highlighter then highlighter}
         <ShikiMagicMove
           options={{ containerStyle: false, lineNumbers: true, duration: 1000, stagger: 0.3 }}
-          code={algosSimple[algorithm.v as keyof typeof algosSimple].toString()}
+          code={algosSimple[algorithm.v].toString()}
           theme="dark-plus"
           {highlighter}
           lang="js"

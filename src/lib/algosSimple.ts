@@ -1,10 +1,10 @@
-const linear = `function linear(target, A) {
+const linear: string = `function linear(target, A) {
   for (let i = 0; i < A.length; i++) if (target === A[i]) return i;
 
   return -1;
 };`;
 
-const sentinel = `function sentinel(target, A) {
+const sentinel: string = `function sentinel(target, A) {
   const last = A[A.length - 1];
   A[A.length - 1] = target;
 
@@ -18,7 +18,7 @@ const sentinel = `function sentinel(target, A) {
   return -1;
 };`;
 
-const binary = `function binary(target, A) {
+const binary: string = `function binary(target, A) {
   let leftIndex = 0;
   let rightIndex = A.length - 1;
 
@@ -33,7 +33,7 @@ const binary = `function binary(target, A) {
   return -1;
 };`;
 
-const exponential = `function exponential(target, A) {
+const exponential: string = `function exponential(target, A) {
   let i = 1;
   while (i < A.length && A[i] <= target) i *= 2;
 
@@ -52,7 +52,7 @@ const exponential = `function exponential(target, A) {
   return -1;
 };`;
 
-const fibonacci = `function fibonacci(target, A) {
+const fibonacci: string = `function fibonacci(target, A) {
   let fibA = 0;
   let fibB = 1;
   let fibC = fibA + fibB;
@@ -87,7 +87,7 @@ const fibonacci = `function fibonacci(target, A) {
   return -1;
 };`;
 
-const interpolation = `function interpolation(target, A) {
+const interpolation: string = `function interpolation(target, A) {
   let leftIndex = 0;
   let rightIndex = A.length - 1;
 
@@ -110,7 +110,7 @@ const interpolation = `function interpolation(target, A) {
   return -1;
 };`;
 
-const jump = `function jump(target, A) {
+const jump: string = `function jump(target, A) {
   let leftIndex = 0;
   let rightIndex = Math.floor(Math.sqrt(A.length));
 
@@ -130,7 +130,7 @@ const jump = `function jump(target, A) {
   return -1;
 };`;
 
-const meta = `function meta(target, A) {
+const meta: string = `function meta(target, A) {
   const numBitsNeededForMaxIndex = Math.ceil(Math.log2(A.length));
 
   let cutoff = 0;
@@ -147,7 +147,7 @@ const meta = `function meta(target, A) {
   return -1;
 };`;
 
-const ternary = `function ternary(target, A) {
+const ternary: string = `function ternary(target, A) {
   let leftIndex = 0;
   let rightIndex = A.length - 1;
 
@@ -169,7 +169,7 @@ const ternary = `function ternary(target, A) {
   return -1;
 };`;
 
-const ubiquitous = `function ubiquitous(target, A) {
+const ubiquitous: string = `function ubiquitous(target, A) {
   let leftIndex = 0;
   let rightIndex = A.length - 1;
 
@@ -186,7 +186,7 @@ const ubiquitous = `function ubiquitous(target, A) {
   return -1;
 };`;
 
-export const algosSimple = {
+export const algosSimple: { [key: string]: string } = {
   Interpolation: interpolation,
   Exponential: exponential,
   Ubiquitous: ubiquitous,
