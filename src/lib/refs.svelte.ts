@@ -1,4 +1,5 @@
 type Step = {
+  vars: { [key: string]: number };
   resultContent: string;
   metaTiles: Tile[];
   tiles: Tile[];
@@ -43,6 +44,6 @@ const refStepList = (): RefStepList => {
 
 export const algorithm: Ref<string> = ref<string>("Linear");
 export const target: Ref<string> = ref<string>("");
-export const step: Ref<Step> = ref<Step>({ resultContent: "", metaTiles: [], tiles: [] });
+export const step: Ref<Step> = ref<Step>({ resultContent: "", metaTiles: [], tiles: [], vars: {} });
 export const stepList: RefStepList = refStepList();
 export const stepListIndexer: Ref<number> = ref<number>(0);
