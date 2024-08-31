@@ -29,17 +29,11 @@
     footer {
       button,
       input {
-        border: none;
-        font-size: inherit;
         margin: 0 1px;
-        padding: 0;
       }
 
       button {
         background-color: var(--secondary-color);
-        color: inherit;
-        cursor: pointer;
-        font-weight: inherit;
         transition: background-color 0.15s ease-out, color 0.15s ease-out;
         width: 3rem;
 
@@ -56,7 +50,6 @@
 
       input {
         min-width: 0; /* Window Resizing */
-        outline: none;
         text-align: center;
         color: black;
 
