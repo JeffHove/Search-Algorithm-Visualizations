@@ -5,45 +5,36 @@ type Step = {
   tiles: Tile[];
 };
 
-type Ref<T> = {
-  reset: () => void;
-  v: T;
-};
-
 type Tile = {
   content: number | null;
   color: string;
 };
 
-type RefStepList = {
-  goPressed: boolean;
-} & Ref<Step[]>;
-
-const ref = <T>(initial: T): Ref<T> => {
-  let v: T = $state(initial);
-  const reset = (): T => (v = initial);
+const ref = <T>(initial: T) => {
+  let v = $state(initial);
+  const reset = () => (v = initial);
 
   return {
-    set v(value: T) { v = value; },
-    get v(): T { return v; },
+    set v(value) { v = value; },
+    get v() { return v; },
     reset,
   };
 };
 
-const refStepList = (): RefStepList => {
-  const baseRef: Ref<Step[]> = ref<Step[]>([]);
-  const goPressed: boolean = $derived(baseRef.v.length > 0);
+const refStepList = () => {
+  const baseRef = ref<Step[]>([]);
+  const goPressed = $derived(baseRef.v.length > 0);
 
   return {
-    get goPressed(): boolean { return goPressed; },
-    set v(value: Step[]) { baseRef.v = value; },
-    get v(): Step[] { return baseRef.v; },
+    get goPressed() { return goPressed; },
+    set v(value) { baseRef.v = value; },
+    get v() { return baseRef.v; },
     reset: baseRef.reset,
   };
 };
 
-export const algorithm: Ref<string> = ref<string>("Linear");
-export const target: Ref<string> = ref<string>("");
-export const step: Ref<Step> = ref<Step>({ resultContent: "", metaTiles: [], tiles: [], vars: {} });
-export const stepList: RefStepList = refStepList();
-export const stepListIndexer: Ref<number> = ref<number>(0);
+export const algorithm = ref<string>("Linear");
+export const target = ref<string>("");
+export const step = ref<Step>({ resultContent: "", metaTiles: [], tiles: [], vars: {} });
+export const stepList = refStepList();
+export const stepListIndexer = ref<number>(0);
