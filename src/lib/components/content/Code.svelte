@@ -260,6 +260,7 @@
     class="overflow-auto bg-secondary-color text-[.5rem] transition-all duration-1000"
     style:padding={sidebarOpen ? ".25rem" : "0"}
     style:width={sidebarOpen ? "100%" : "0"}
+    tabindex="-1"
   >
     {#await highlighter then highlighter}
       <ShikiMagicMove

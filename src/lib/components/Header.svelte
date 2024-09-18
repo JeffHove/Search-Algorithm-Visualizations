@@ -7,7 +7,7 @@
   {#if !stepList.goPressed}
     {#each [...Object.keys(unsortedAlgos), ...Object.keys(sortedAlgos)] as key, i}
       {#if i === Object.keys(unsortedAlgos).length}&nbsp;{/if}
-      <input bind:group={algorithm.v} name="algorithm" class="hidden" type="radio" value={key} id={key} />
+      <input bind:group={algorithm.v} name="algorithm" class="fixed opacity-0 pointer-events-none" type="radio" value={key} id={key} />
       <label class="cursor-pointer bg-secondary-color px-2 py-1 transition-colors hover:bg-white hover:text-secondary-color" for={key}>{key}</label>
     {/each}
   {:else}
