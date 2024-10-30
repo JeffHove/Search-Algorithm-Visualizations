@@ -46,7 +46,7 @@ export default [
       "@typescript-eslint/no-unused-vars": ["error", { argsIgnorePattern: "^_" }],
       "@stylistic/max-statements-per-line": ["error", { max: 3 }],
       "@stylistic/member-delimiter-style": ["error", {}], // {} overrides recommended-flat config with default.
-      "@stylistic/max-len": ["error", { code: 160 }],
+      "@stylistic/max-len": ["error", { code: 170 }],
       "@stylistic/quotes": ["error", "double"],
       "@stylistic/semi": ["error", "always"],
     },

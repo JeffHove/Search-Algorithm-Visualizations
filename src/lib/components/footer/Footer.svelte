@@ -9,15 +9,13 @@
 
 <footer class="flex h-9 justify-center" aria-label="Footer">
   {#if !stepList.goPressed}
-    <ArrayInput />
     {#if step.v.tiles.length > 0}
       <Clipboard />
-      <Go />
+    {/if}
+    <ArrayInput />
+    {#if step.v.tiles.length > 0}
       <Target />
-    {:else}
-      <button class="invisible"></button>
-      <button class="invisible"></button>
-      <button class="invisible"></button>
+      <Go />
     {/if}
   {:else}
     <LeftRightReset />

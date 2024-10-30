@@ -1,6 +1,7 @@
 <script lang="ts">
   import { sanitizeInput } from "$lib/shared.svelte";
   import { step } from "$lib/refs.svelte";
+  import { fly } from "svelte/transition";
 
   const getRandomIntInclusive = (min: number, max: number): number => Math.floor(Math.random() * (max - min + 1)) + min;
 
@@ -31,30 +32,24 @@
 </script>
 
 {#if step.v.tiles.length > 0}
-  <button class="mx-px w-12 bg-secondary-color transition active:bg-primary-color active:transition-none hover:bg-white hover:text-secondary-color" aria-label="Remove array input" onclick={pop}>
-    -
-    <span class="absolute -ml-2 -mt-12 hidden text-xs text-secondary-color">Shift + Enter</span>
-  </button>
-{:else}
-  <button class="invisible"></button>
+  <button
+    class="mx-px w-12 bg-secondary-color transition active:bg-primary-color active:transition-none hover:bg-white hover:text-secondary-color"
+    transition:fly={{ duration: 1000, y: 80 }}
+    aria-label="Remove array input"
+    onclick={pop}
+  >-</button>
 {/if}
 <input
+  class="fa-solid mx-px w-36 min-w-0 text-center text-black focus:placeholder:text-transparent"
   oninput={() => { arrayInput = sanitizeInput(arrayInput, "0-9, -"); }}
   aria-label="Array input comma number comma etc."
   onkeydown={handleKeydown}
   placeholder="#, #, ..."
   bind:value={arrayInput}
-  class="fa-solid mx-px w-36 min-w-0 text-center text-black focus:placeholder:text-transparent"
   type="text"
 />
-<button class="mx-px w-12 bg-secondary-color transition active:bg-primary-color active:transition-none hover:bg-white hover:text-secondary-color" aria-label="Add array input" onclick={push}>
-  +
-  <span class="absolute -mt-12 ml-2 hidden text-xs text-secondary-color">Enter</span>
-</button>
-
-<style>
-  input[type="text"]:focus + button span,
-  button:has(+ input[type="text"]:focus) span {
-    display: block;
-  }
-</style>
+<button
+  class="mx-px w-12 bg-secondary-color transition active:bg-primary-color active:transition-none hover:bg-white hover:text-secondary-color"
+  aria-label="Add array input"
+  onclick={push}
+>+</button>

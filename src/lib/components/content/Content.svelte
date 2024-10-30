@@ -35,7 +35,7 @@
   </div>
 
   <div class="p-1">
-    <a href="https://github.com/Tree52/Search-Algorithm-Visualizations">
+    <a href="https://github.com/Tree52/Search-Algorithm-Visualizations" aria-label="Link to GitHub repository">
       <i class="fa-brands fa-github"></i>
     </a>
   </div>

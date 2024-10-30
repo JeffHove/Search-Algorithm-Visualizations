@@ -277,6 +277,7 @@
       class="h-full p-1 fa-solid fa-arrow-right transition-transform duration-1000"
       style:transform={sidebarOpen ? "rotate(-180deg)" : ""}
       onclick={() => { sidebarOpen = !sidebarOpen; }}
+      aria-label="Show code"
     ></button>
   </div>
 </div>
