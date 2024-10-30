@@ -8,5 +8,5 @@
   aria-label="Algorithm target number"
   placeholder="&#xf140"
   bind:value={target.v}
-  class="fa-solid w-12"
+  class="fa-solid mx-px w-12 min-w-0 text-center text-black focus:placeholder:text-transparent"
 />

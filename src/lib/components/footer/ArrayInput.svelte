@@ -31,7 +31,7 @@
 </script>
 
 {#if step.v.tiles.length > 0}
-  <button aria-label="Remove array input" onclick={pop}>
+  <button class="mx-px w-12 bg-secondary-color transition active:bg-primary-color active:transition-none hover:bg-white hover:text-secondary-color" aria-label="Remove array input" onclick={pop}>
     -
     <span class="absolute -ml-2 -mt-12 hidden text-xs text-secondary-color">Shift + Enter</span>
   </button>
@@ -44,10 +44,10 @@
   onkeydown={handleKeydown}
   placeholder="#, #, ..."
   bind:value={arrayInput}
-  class="fa-solid w-36"
+  class="fa-solid mx-px w-36 min-w-0 text-center text-black focus:placeholder:text-transparent"
   type="text"
 />
-<button aria-label="Add array input" onclick={push}>
+<button class="mx-px w-12 bg-secondary-color transition active:bg-primary-color active:transition-none hover:bg-white hover:text-secondary-color" aria-label="Add array input" onclick={push}>
   +
   <span class="absolute -mt-12 ml-2 hidden text-xs text-secondary-color">Enter</span>
 </button>

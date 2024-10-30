@@ -11,7 +11,7 @@
 {#if stepListIndexer.v !== 1}
   <button
     onclick={() => { stepListIndexer.v--; step.v = $state.snapshot(stepList.v[stepListIndexer.v]); }}
-    class="fa-solid fa-arrow-left"
+    class="fa-solid fa-arrow-left mx-px w-12 bg-secondary-color transition active:bg-primary-color active:transition-none hover:bg-white hover:text-secondary-color"
     aria-label="Left arrow"
   ></button>
 {:else}
@@ -20,10 +20,10 @@
 {#if stepListIndexer.v !== stepList.v.length - 1}
   <button
     onclick={() => { stepListIndexer.v++; step.v = $state.snapshot(stepList.v[stepListIndexer.v]); }}
-    class="fa-solid fa-arrow-right"
+    class="fa-solid fa-arrow-right mx-px w-12 bg-secondary-color transition active:bg-primary-color active:transition-none hover:bg-white hover:text-secondary-color"
     aria-label="Right arrow"
   ></button>
 {:else}
   <button class="invisible"></button>
 {/if}
-<button class="fa-solid fa-rotate-right" aria-label="Reset footer" {onclick}></button>
+<button class="fa-solid fa-rotate-right mx-px w-12 bg-secondary-color transition active:bg-primary-color active:transition-none hover:bg-white hover:text-secondary-color" aria-label="Reset footer" {onclick}></button>
