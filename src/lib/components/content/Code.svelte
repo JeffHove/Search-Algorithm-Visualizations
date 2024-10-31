@@ -4,15 +4,8 @@
   import { createHighlighter } from "shiki";
   import "shiki-magic-move/dist/style.css";
 
-  let sidebarOpen = $state(false);
-
-  const highlighter = createHighlighter({
-    langs: ["javascript"],
-    themes: ["dark-plus"],
-  });
-
-  const code = $derived.by(() => {
-    const interpolation = `function interpolation(target, A) {
+  // #region Algos
+  const interpolation = `function interpolation(target, A) {
   let leftIndex = 0;
   let rightIndex = A.length - 1;
 
@@ -33,11 +26,7 @@
   }
 
   return -1;
-}
-  
-// leftIndex = ${step.v.vars["leftIndex"]}
-// rightIndex = ${step.v.vars["rightIndex"]}
-// pivot = ${step.v.vars["pivot"]}`;
+}`;
 
     const exponential = `function exponential(target, A) {
   let i = 1;
@@ -56,12 +45,7 @@
   }
 
   return -1;
-}
-
-// i = ${step.v.vars["i"]}
-// leftIndex = ${step.v.vars["leftIndex"]}
-// rightIndex = ${step.v.vars["rightIndex"]}
-// pivot = ${step.v.vars["pivot"]}`;
+}`;
 
     const ubiquitous = `function ubiquitous(target, A) {
   let leftIndex = 0;
@@ -78,10 +62,7 @@
   if (A[rightIndex] === target) return rightIndex;
 
   return -1;
-}
-
-// leftIndex = ${step.v.vars["leftIndex"]}
-// rightIndex = ${step.v.vars["rightIndex"]}`;
+}`;
 
     const fibonacci = `function fibonacci(target, A) {
   let fibA = 0;
@@ -116,13 +97,7 @@
   if (fibB && A[A.length - 1] === target) return A.length - 1;
 
   return -1;
-}
-
-// fibA = ${step.v.vars["fibA"]}
-// fibB = ${step.v.vars["fibB"]}
-// fibC = ${step.v.vars["fibC"]}
-// eliminatedFrontIndex = ${step.v.vars["eliminatedFrontIndex"]}
-// pivot = ${step.v.vars["pivot"]}`;
+}`;
 
     const sentinel = `function sentinel(target, A) {
   const last = A[A.length - 1];
@@ -136,9 +111,7 @@
   if (i < A.length - 1 || A[A.length - 1] === target) return i;
 
   return -1;
-}
-
-// i = ${step.v.vars["i"]}`;
+}`;
 
     const ternary = `function ternary(target, A) {
   let leftIndex = 0;
@@ -160,12 +133,7 @@
   }
 
   return -1;
-}
-
-// leftIndex = ${step.v.vars["leftIndex"]}
-// rightIndex = ${step.v.vars["rightIndex"]}
-// pivot1 = ${step.v.vars["pivot1"]}
-// pivot2 = ${step.v.vars["pivot2"]}`;
+}`;
 
     const binary = `function binary(target, A) {
   let leftIndex = 0;
@@ -180,19 +148,13 @@
   }
 
   return -1;
-}
-
-// leftIndex = ${step.v.vars["leftIndex"]}
-// rightIndex = ${step.v.vars["rightIndex"]}
-// pivot = ${step.v.vars["pivot"]}`;
+}`;
 
     const linear = `function linear(target, A) {
   for (let i = 0; i < A.length; i++) if (target === A[i]) return i;
 
   return -1;
-}
-
-// i = ${step.v.vars["i"]}`;
+}`;
 
     const jump = `function jump(target, A) {
   let leftIndex = 0;
@@ -212,10 +174,7 @@
   if (A[leftIndex] === target) return leftIndex;
 
   return -1;
-}
-
-// leftIndex = ${step.v.vars["leftIndex"]}
-// rightIndex = ${step.v.vars["rightIndex"]}`;
+}`;
 
     const meta = `function meta(target, A) {
   const numBitsNeededForMaxIndex = Math.ceil(Math.log2(A.length));
@@ -232,26 +191,39 @@
   if (A[cutoff] === target) return cutoff;
 
   return -1;
-}
+}`;
+// #endregion
 
-// numBitsNeededForMaxIndex = ${step.v.vars["numBitsNeededForMaxIndex"]}
-// cutoff = ${step.v.vars["cutoff"]}
-// i = ${step.v.vars["i"]}
-// cutoffCandidate = ${step.v.vars["cutoffCandidate"]}`;
+  let sidebarOpen = $state(false);
+
+  const highlighter = createHighlighter({
+    langs: ["javascript"],
+    themes: ["dark-plus"],
+  });
+
+  const { varsFormatted, algo } = $derived.by(() => {
+    let algo = "";
+    let selectedVars: string[] = [];
 
     switch (algorithm.v) {
-      case "Interpolation": return interpolation;
-      case "Exponential": return exponential;
-      case "Ubiquitous": return ubiquitous;
-      case "Fibonacci": return fibonacci;
-      case "Sentinel": return sentinel;
-      case "Ternary": return ternary;
-      case "Binary": return binary;
-      case "Linear": return linear;
-      case "Jump": return jump;
-      case "Meta": return meta;
+      case "Interpolation": algo = interpolation; selectedVars = ["leftIndex", "rightIndex", "pivot"]; break;
+      case "Exponential": algo = exponential; selectedVars = ["i", "leftIndex", "rightIndex", "pivot"]; break;
+      case "Ubiquitous": algo = ubiquitous; selectedVars = ["leftIndex", "rightIndex"]; break;
+      case "Fibonacci": algo = fibonacci; selectedVars = ["fibA", "fibB", "fibC", "eliminatedFrontIndex", "pivot"]; break;
+      case "Sentinel": algo = sentinel; selectedVars = ["i"]; break;
+      case "Ternary": algo = ternary; selectedVars = ["leftIndex", "rightIndex", "pivot1", "pivot2"]; break;
+      case "Binary": algo = binary; selectedVars = ["leftIndex", "rightIndex", "pivot"]; break;
+      case "Linear": algo = linear; selectedVars = ["i"]; break;
+      case "Jump": algo = jump; selectedVars = ["leftIndex", "rightIndex"]; break;
+      case "Meta": algo = meta; selectedVars = ["numBitsNeededForMaxIndex", "cutoff", "i", "cutoffCandidate"]; break;
       default: throw new Error("Unreachable: algorithm doesn't match a code string.");
     }
+
+    let varsFormatted = "\n";
+    for (let i = 0; i < selectedVars.length; i++) {
+      varsFormatted += `// ${selectedVars[i]} = ${step.v.vars[selectedVars[i]]}\n`;
+    }
+    return { varsFormatted, algo };
   });
 </script>
 
@@ -268,7 +240,15 @@
         theme="dark-plus"
         {highlighter}
         lang="js"
-        {code}
+        code={algo}
+      />
+
+      <ShikiMagicMove
+        options={{ containerStyle: false, duration: 1000, stagger: 0.3 }}
+        theme="dark-plus"
+        {highlighter}
+        lang="js"
+        code={varsFormatted}
       />
     {/await}
   </div>
