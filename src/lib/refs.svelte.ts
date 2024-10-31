@@ -21,20 +21,11 @@ const ref = <T>(initial: T) => {
   };
 };
 
-const refStepList = () => {
-  const baseRef = ref<Step[]>([]);
-  const goPressed = $derived(baseRef.v.length > 0);
-
-  return {
-    get goPressed() { return goPressed; },
-    set v(value) { baseRef.v = value; },
-    get v() { return baseRef.v; },
-    reset: baseRef.reset,
-  };
-};
-
 export const algorithm = ref<string>("Linear");
 export const target = ref<string>("");
 export const step = ref<Step>({ resultContent: "", metaTiles: [], tiles: [], vars: {} });
-export const stepList = refStepList();
+export const stepList = ref<Step[]>([]);
 export const stepListIndexer = ref<number>(0);
+
+const goPressed = $derived(stepList.v.length > 0);
+export const getGoPressed = () => goPressed;

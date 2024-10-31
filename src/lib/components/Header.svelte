@@ -1,10 +1,10 @@
 <script lang="ts">
-  import { stepListIndexer, algorithm, stepList, target } from "$lib/refs.svelte";
+  import { stepListIndexer, getGoPressed, algorithm, stepList, target } from "$lib/refs.svelte";
   import { unsortedAlgos, sortedAlgos } from "$lib/algos";
 </script>
 
 <header class="flex flex-wrap justify-center border-b-2 border-b-white" aria-label="Header algorithms checklist">
-  {#if !stepList.goPressed}
+  {#if !getGoPressed()}
     {#each [...Object.keys(unsortedAlgos), ...Object.keys(sortedAlgos)] as key, i}
       {#if i === Object.keys(unsortedAlgos).length}&nbsp;{/if}
       <input bind:group={algorithm.v} name="algorithm" class="pointer-events-none fixed opacity-0" type="radio" value={key} id={key} />
