@@ -257,7 +257,7 @@
 
 <div class="flex">
   <div
-    class="overflow-auto bg-secondary-color text-[.5rem] transition-all duration-1000"
+    class="overflow-auto bg-secondary-color text-[.25rem] transition-all duration-1000 sm:text-[.5rem]"
     style:padding={sidebarOpen ? ".25rem" : "0"}
     style:width={sidebarOpen ? "100%" : "0"}
     tabindex="-1"
