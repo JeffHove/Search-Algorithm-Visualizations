@@ -5,7 +5,7 @@
 </script>
 
 <input
-  class="fa-solid mx-px w-12 min-w-0 text-center text-black focus:placeholder:text-transparent"
+  class="fa-solid mx-px w-12 min-w-0 bg-white text-center text-black focus:placeholder:text-transparent"
   oninput={() => { target.v = sanitizeInput(target.v, "0-9-"); }}
   onkeydown={(e) => { if (e.key === "Enter") go(); }}
   transition:fly={{ duration: 1000, y: 80 }}

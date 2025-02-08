@@ -8,7 +8,7 @@
     {#each [...Object.keys(unsortedAlgos), ...Object.keys(sortedAlgos)] as key, i}
       {#if i === Object.keys(unsortedAlgos).length}&nbsp;{/if}
       <input bind:group={algorithm.v} name="algorithm" class="pointer-events-none fixed opacity-0" type="radio" value={key} id={key} />
-      <label class="cursor-pointer bg-secondary-color px-2 py-1 transition-colors hover:bg-white hover:text-secondary-color" for={key}>{key}</label>
+      <label class="cursor-pointer bg-secondary px-2 py-1 transition-colors hover:bg-white hover:text-secondary" for={key}>{key}</label>
     {/each}
   {:else}
     <div class="p-2 text-xs">
@@ -22,6 +22,6 @@
 <style>
   input[type="radio"]:checked + label {
     background-color: white;
-    color: var(--secondary-color);
+    color: var(--color-secondary);
   }
 </style>

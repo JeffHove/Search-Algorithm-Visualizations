@@ -229,7 +229,7 @@
 
 <div class="flex">
   <div
-    class="overflow-auto bg-secondary-color text-[.25rem] transition-all duration-1000 sm:text-[.5rem]"
+    class="overflow-auto bg-secondary text-[.25rem] transition-all duration-1000 sm:text-[.5rem]"
     style:padding={sidebarOpen ? ".25rem" : "0"}
     style:width={sidebarOpen ? "100%" : "0"}
     tabindex="-1"
@@ -252,7 +252,7 @@
       />
     {/await}
   </div>
-  <div class="mt-1 h-10 bg-secondary-color">
+  <div class="mt-1 h-10 bg-secondary">
     <button
       class="h-full p-1 fa-solid fa-arrow-right transition-transform duration-1000"
       style:transform={sidebarOpen ? "rotate(-180deg)" : ""}

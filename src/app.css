@@ -1,11 +1,9 @@
 @import "@fortawesome/fontawesome-free/css/all.min.css";
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
-:root {
-  --primary-color: rgb(18, 18, 18);
-  --secondary-color: rgb(60, 60, 60);
+@theme {
+  --color-primary: #121212;
+  --color-secondary: #3c3c3c;
 }
 
 html {
@@ -14,13 +12,17 @@ html {
   height: 100%;
 
   body {
-    background-color: var(--primary-color);
+    background-color: var(--color-primary);
     color: white;
     display: flex;
     flex-direction: column;
     height: inherit;
     margin: 0;
     user-select: none;
+
+    button {
+      cursor: pointer;
+    }
   }
 }
 
