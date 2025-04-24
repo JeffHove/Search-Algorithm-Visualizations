@@ -1,4 +1,5 @@
 <script lang="ts">
+  import Funding from "$lib/components/Funding.svelte";
   import Code from "$lib/components/Code.svelte";
   import { step } from "$lib/refs.svelte";
 </script>
@@ -34,9 +35,5 @@
     </div>
   </div>
 
-  <div class="p-1">
-    <a href="https://github.com/JeffHove/Search-Algorithm-Visualizations" aria-label="Link to GitHub repository">
-      <i class="fa-brands fa-github"></i>
-    </a>
-  </div>
+  <Funding />
 </main>
