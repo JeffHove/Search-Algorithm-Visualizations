@@ -6,10 +6,6 @@
   let { children } = $props();
 </script>
 
-<svelte:head>
-  <title>Search Algorithm Visualizations</title>
-</svelte:head>
-
 <Header />
 {@render children()}
 <Footer />
